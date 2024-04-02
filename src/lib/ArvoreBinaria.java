@@ -12,12 +12,12 @@ import java.util.Comparator;
  *
  * @author victoriocarvalho
  */
-public class ArvoreBinariaExemplo<T> implements IArvoreBinaria<T> {
+public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     
-    protected NoExemplo<T> raiz = null;
+    protected No<T> raiz = null;
     protected Comparator<T> comparador; 
   
-    public ArvoreBinariaExemplo(Comparator<T> comp) {
+    public ArvoreBinaria(Comparator<T> comp) {
         comparador = comp;
     }
     
