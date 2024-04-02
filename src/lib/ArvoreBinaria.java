@@ -32,7 +32,7 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     }
 
    @Override
-    public T pesquisar(T valor, Comparator comparador) {
+    public T pesquisar(T valor, Comparator comparador) { //varrer a arvore inteira até achar o elemento
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
