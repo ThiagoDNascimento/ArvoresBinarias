@@ -23,10 +23,10 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     
     @Override
     public void adicionar(T novoValor) {
-        No<T> novoNo = new No<T>(novoValor);
-        if(this.raiz == null){
+        No<T> novoNo = new No<T>(novoValor); //cria novoNo
+        if(this.raiz == null){ //se a raiz for null, nao existe raiz
             this.raiz = novoNo;
-        }else{
+        }else{ //se existir raiz chama o metodo adicionar passando a raiz e o novoNo
             this.raiz = adicionar(this.raiz, novoNo);
         }
     }
@@ -49,7 +49,17 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
 
     @Override
     public T pesquisar(T valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        No<T> atual = this.raiz;
+        while (atual != null) {
+            if (atual.getValor().equals(valor)) {
+                return atual.getValor();
+            } else if (comparador.compare(atual.getValor(), valor) < 0) { // se for menor vai pra esquerda
+                atual.getFilhoEsquerda();
+            } else { // se for maior vai pra direita
+                atual.getFilhoDireita();
+            }
+        }
+        return null;
     }
 
    @Override
