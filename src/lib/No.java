@@ -21,6 +21,24 @@ public class No<T> {
         this.filhoDireita = null;
         this.filhoEsquerda = null;
     }
+
+    public int obterAltura(){
+        return obterAltura(this);
+    }
+
+    private int obterAltura(No<T> raiz){
+        if(this.raiz == null){
+            return -1;
+        }else{
+            int alturaDireita = obterAltura(raiz.getFilhoDireita());
+            int alturaEsquerda = obterAltura(raiz.getFilhoEsquerda());
+            if(alturaDireita > alturaEsquerda){
+                return alturaDireita+1;
+            }else{
+                return alturaEsquerda+1;
+            }
+        }
+    }
     
     /**
      * @return the valor

@@ -63,8 +63,26 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     }
 
    @Override
-    public T pesquisar(T valor, Comparator comparador) { //varrer a arvore inteira até achar o elemento
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public T pesquisar(T valor, Comparator comparador) { //varrer a arvore inteira até achar o elemento, 
+        return pesquisarRec(this.raiz,valor,comparador);
+    }
+    private T pesquisarRec(No<T> r, T valor, Comparator comparador){ //teste, professor
+        if(r == null){
+            return null;
+        }
+        if(Comparador.compare(valor,r.getValor()) == 0){
+            return raiz.getValor();
+        }else{ //varre a arvore inteira
+            no<t> rD = pesquisarRec(r.getFilhoDireita,valor,comparador);
+            no<t> dE = pesquisarRec(r.getFilhoEsquerda,valor,comparador);
+            if(rD != null){
+                return rD;
+            }else if(rE != null){
+                return rE;
+            }else{
+                return null;
+            }
+        }
     }
 
     @Override
@@ -74,13 +92,21 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
 
     @Override
     public int altura() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.raiz.obterAltura();
     }
        
     
     @Override
     public int quantidadeNos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return quantidadeNos(this.raiz);
+    }
+
+    private int quantidadeNos(No<T> no){
+        if(no == null){
+            return 0;
+        }else{
+            return 1 + quantidadeNos(no.getFilhoEsquerda) + quantidadeNos(no.getFilhoDireita); 
+        }
     }
 
     @Override
