@@ -8,10 +8,6 @@ package lib;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-/**
- *
- * @author victoriocarvalho
- */
 public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     
     protected No<T> raiz = null;
@@ -66,20 +62,20 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     public T pesquisar(T valor, Comparator comparador) { //varrer a arvore inteira até achar o elemento, 
         return pesquisarRec(this.raiz,valor,comparador);
     }
-    private T pesquisarRec(No<T> r, T valor, Comparator comparador){ //teste, professor
-        if(r == null){
+    private T pesquisarRec(No<T> r, T valor, Comparator comparador) { //teste, professor
+        if (r == null) {
             return null;
         }
-        if(Comparador.compare(valor,r.getValor()) == 0){
+        if (Comparador.compare(valor,r.getValor()) == 0) {
             return raiz.getValor();
-        }else{ //varre a arvore inteira
-            no<t> rD = pesquisarRec(r.getFilhoDireita,valor,comparador);
-            no<t> dE = pesquisarRec(r.getFilhoEsquerda,valor,comparador);
-            if(rD != null){
+        } else { //varre a arvore inteira
+            No<T> rD = pesquisarRec(r.getFilhoDireita,valor,comparador); 
+            No<T> rE = pesquisarRec(r.getFilhoEsquerda,valor,comparador); 
+            if (rD != null) {
                 return rD;
-            }else if(rE != null){
+            } else if (rE != null) {
                 return rE;
-            }else{
+            } else {
                 return null;
             }
         }
