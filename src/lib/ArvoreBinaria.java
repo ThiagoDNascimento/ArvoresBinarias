@@ -11,7 +11,7 @@ import java.util.Comparator;
 public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     
     protected No<T> raiz = null;
-    protected Comparator<T> comparador; 
+    protected Comparator<T> comparador;
   
     public ArvoreBinaria(Comparator<T> comp) {
         comparador = comp;
@@ -44,18 +44,22 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     }
 
     @Override
-    public T pesquisar(T valor) {
-        No<T> atual = this.raiz;
-        while (atual != null) {
-            if (atual.getValor().equals(valor)) {
-                return atual.getValor();
-            } else if (comparador.compare(atual.getValor(), valor) < 0) { // se for menor vai pra esquerda
-                atual.getFilhoEsquerda();
-            } else { // se for maior vai pra direita
-                atual.getFilhoDireita();
-            }
+    public T pesquisar(T valor){    
+        return pesquisar(this.raiz,valor);
+    }
+
+    protected T pesquisar(No<T> atual,T valor){
+        if(atual == null){  
+            return null;
         }
-        return null;
+        if(comparador.compare(atual.getValor(), valor) == 0){
+            return atual.getValor(); 
+        }else if(comparador.compare(atual.getValor(), valor) < 0){
+            return pesquisar(atual.getFilhoEsquerda(),valor);
+        }else{
+            return pesquisar(atual.getFilhoDireita(),valor);
+        }
+
     }
 
    @Override
