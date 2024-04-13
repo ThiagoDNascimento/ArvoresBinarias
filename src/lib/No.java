@@ -23,7 +23,7 @@ public class No<T> {
     }
 
     private int obterAltura(No<T> raiz){
-        if(this.raiz == null){
+        if(raiz == null){
             return -1;
         }else{
             int alturaDireita = obterAltura(raiz.getFilhoDireita());

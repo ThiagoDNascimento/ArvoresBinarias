@@ -34,7 +34,7 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
                 atual.setFilhoEsquerda(adicionar(atual.getFilhoEsquerda(), novoNo));
             }
         }else{ //Se o novoNo for maior ou igual que o atual, vai pra direita
-            if(atual.getFilhoDireita == null){ //Se não existir no à direita, adiciona o novoNo
+            if(atual.getFilhoDireita() == null){ //Se não existir no à direita, adiciona o novoNo
                 atual.setFilhoDireita(novoNo);
             }else{ //se existir no à direita, chama o metodo para comparar o novoNo com o no existente
                 atual.setFilhoDireita(adicionar(atual.getFilhoDireita(), novoNo));
@@ -66,11 +66,11 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
         if (r == null) {
             return null;
         }
-        if (Comparador.compare(valor,r.getValor()) == 0) {
-            return raiz.getValor();
+        if (comparador.compare(valor,r.getValor()) == 0) {
+            return r.getValor();
         } else { //varre a arvore inteira
-            No<T> rD = pesquisarRec(r.getFilhoDireita,valor,comparador); 
-            No<T> rE = pesquisarRec(r.getFilhoEsquerda,valor,comparador); 
+            T rD = pesquisarRec(r.getFilhoDireita(),valor,comparador); 
+            T rE = pesquisarRec(r.getFilhoEsquerda(),valor,comparador); 
             if (rD != null) {
                 return rD;
             } else if (rE != null) {
@@ -101,7 +101,7 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
         if(no == null){
             return 0;
         }else{
-            return 1 + quantidadeNos(no.getFilhoEsquerda) + quantidadeNos(no.getFilhoDireita); 
+            return 1 + quantidadeNos(no.getFilhoEsquerda()) + quantidadeNos(no.getFilhoDireita()); 
         }
     }
 
