@@ -87,7 +87,43 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
 
     @Override
     public T remover(T valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return removerRec(this.raiz, valor, comparador);
+    }
+    private T removerRec(No<T> r, T valor, Comparator comparator){
+        No<T> atual = this.raiz;
+        No<T> noPaiAtual = null;
+        if(r == null){
+            return null;
+        }
+        else if(r.getValor().equals(valor)){ //Se o valor foi igual então achou o nó a ser removido
+            if(r.getFilhoDireita() == null && r.getFilhoEsquerda() == null){ //se for nó folha, remove
+                r = null; 
+            }
+            else if(r.getFilhoDireita() != null && r.getFilhoEsquerda() != null){ //se tiver nó a esquerda e a direita, pega o menos dos maiores e coloca no lugar
+                
+
+            }
+
+        }
+        else if(comparador.compare(valor, r.getValor()) < 0){
+            removerRec(r.getFilhoEsquerda(), valor, comparator);
+        }
+        //else if(comparador.compare(valor, this.raiz.getValor()) < 0){ //se for menor vai pra esquerda
+        return null;
+    }
+
+    private T menorElemento(No<T> raiz) {
+        while (raiz.getFilhoEsquerda() != null) { // percorre até nao ter mais filho a esquerda
+            raiz = raiz.getFilhoEsquerda();
+        }
+        return raiz.getValor(); // retorna o menor valor
+    }
+
+    private T maiorElemento(No<T> raiz) {
+        while (raiz.getFilhoDireita() != null) { // percorre até nao ter mais filho a direita
+            raiz = raiz.getFilhoDireita();
+        }
+        return raiz.getValor(); // retorna o maior valor
     }
 
     @Override

@@ -1,5 +1,7 @@
 package app;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author victoriocarvalho
@@ -11,10 +13,17 @@ package app;
 public class Aluno  {
     private int matricula;
     private String nome;
+    private ArrayList<Disciplina> disciplinas;
 
     public Aluno(int matricula, String nome){
         this.matricula = matricula;
-        this.nome = nome;        
+        this.nome = nome;      
+    }
+
+    public Aluno(int matricula, String nome, ArrayList<Disciplina> list){
+        this.matricula = matricula;
+        this.nome = nome;
+        this.disciplinas.addAll(list);        
     }
 
 
@@ -34,5 +43,9 @@ public class Aluno  {
         this.nome = nome;
     }
 
+    @Override
+    public String toString(){
+        return "\nAluno: "+ nome + " - Matricula: "+matricula;
+    }
 
 }

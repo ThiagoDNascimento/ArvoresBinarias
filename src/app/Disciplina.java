@@ -7,9 +7,9 @@ public class Disciplina {
     int codigo;
     String nome;
     int cargaHoraria;
-    ArrayList<String> pre = new ArrayList<String>();
+    ArrayList<Disciplina> pre = new ArrayList<Disciplina>();
 
-    public Disciplina(int codigo, String nome, int cargaHoraria, ArrayList<String> pre){
+    public Disciplina(int codigo, String nome, int cargaHoraria, ArrayList<Disciplina> pre){
         this.codigo = codigo;
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
@@ -40,13 +40,17 @@ public class Disciplina {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public ArrayList<String> getPre() {
+    public ArrayList<Disciplina> getPre() {
         return pre;
     }
 
-    public void setPre(ArrayList<String> pre) {
+    public void setPre(ArrayList<Disciplina> pre) {
         this.pre = pre;
     }
 
+    @Override
+    public String toString(){
+        return "\nCodigo: "+ codigo + " - Nome: "+nome;
+    }
     
 }
