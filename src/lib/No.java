@@ -36,6 +36,11 @@ public class No<T> {
         }
     }
     
+    public int fatorBalanceamento(){
+        return obterAltura(this.filhoDireita) - obterAltura(this.filhoEsquerda);
+    }
+    
+    
     /**
      * @return the valor
      */
