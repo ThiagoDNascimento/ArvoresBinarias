@@ -9,11 +9,10 @@ public class Disciplina {
     int cargaHoraria;
     ArrayList<Disciplina> pre = new ArrayList<Disciplina>();
 
-    public Disciplina(int codigo, String nome, int cargaHoraria, Disciplina pre){
+    public Disciplina(int codigo, String nome, int cargaHoraria){
         this.codigo = codigo;
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
-        this.pre.add(pre);
     }
 
     public int getCodigo() {
@@ -50,7 +49,7 @@ public class Disciplina {
 
     @Override
     public String toString(){
-        return "\nCodigo: "+ codigo + " - Nome: "+nome;
+        return "\nCodigo: "+ codigo + " - Nome: "+nome+" pre: "+pre;
     }
     
 }

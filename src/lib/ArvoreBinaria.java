@@ -54,7 +54,7 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
         }
         if(comparador.compare(atual.getValor(), valor) == 0){
             return atual.getValor(); 
-        }else if(comparador.compare(atual.getValor(), valor) < 0){
+        }else if(comparador.compare(atual.getValor(), valor) > 0){
             return pesquisar(atual.getFilhoEsquerda(),valor);
         }else{
             return pesquisar(atual.getFilhoDireita(),valor);
@@ -87,7 +87,8 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
 
     @Override
     public T remover(T valor) {
-        return (T) removerRec(this.raiz, valor, comparador);
+        this.raiz = removerRec(this.raiz, valor, comparador);
+        return null;
     }
     private No<T> removerRec(No<T> r, T valor, Comparator comparator){
         if(r == null){

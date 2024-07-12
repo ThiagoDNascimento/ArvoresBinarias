@@ -12,7 +12,7 @@ public class AppControle {
     static ComparadorAlunoPorMatricula comparadorAM = new ComparadorAlunoPorMatricula();
     static ComparadorAlunoPorNome comparadorAN = new ComparadorAlunoPorNome();
     static ComparadorDisciplinaPorCodigo comparadorDC = new ComparadorDisciplinaPorCodigo();
-    ComparadorDisciplinaPorNome comparadorDN = new ComparadorDisciplinaPorNome();
+    static ComparadorDisciplinaPorNome comparadorDN = new ComparadorDisciplinaPorNome();
 
     static IArvoreBinaria<Aluno> arvoreAlunos = new ArvoreBinaria(comparadorAM);
     static IArvoreBinaria<Disciplina> arvoreDisciplinas = new ArvoreBinaria(comparadorDC);
@@ -22,8 +22,8 @@ public class AppControle {
 
         Scanner entrada = new Scanner(System.in);
         int numero = 0;
-        int matricula, codigo, cargaHoraria;
-        String nome,nome2;
+        int matricula, codigo, codigo2, cargaHoraria;
+        String nome;
         String texto = 
         "\nEscolha um número entre 1 a 8" +
         "\n1 - Cadastrar Aluno" +
@@ -54,13 +54,17 @@ public class AppControle {
                     nome = entrada.next();
                     System.out.println("Informe a carga horaria");
                     cargaHoraria = entrada.nextInt();
-                    arvoreDisciplinas.adicionar(new Disciplina(codigo, nome, cargaHoraria, null));
+                    arvoreDisciplinas.adicionar(new Disciplina(codigo, nome, cargaHoraria));
                     break;
                 case 3: //Informar pré-requisito: dadas duas disciplinas previamente cadastradas, registra que a primeira é pré-requisito da segunda.
                     System.out.println("Informe a primeira disciplina");
-                    nome = entrada.next();
+                    codigo = entrada.nextInt();
                     System.out.println("Informe a segunda disciplina");
-                    nome2 = entrada.next();
+                    codigo2 = entrada.nextInt();
+                    Disciplina disc1 = arvoreDisciplinas.pesquisar(new Disciplina(codigo, "", 0));
+                    Disciplina disc2 = arvoreDisciplinas.pesquisar(new Disciplina(codigo2, "", 0));
+                    disc2.setPre(disc1);
+                    System.out.println(disc2);
                     break;
                 case 4: //Informar Disciplina cursada: Dado um aluno e uma disciplina previamente cadastrados, verifica se o aluno cursou todos os pré-requisitos da disciplina dada e, caso positivo, registra que o aluno cursou tal disciplina. Caso contrário exibe uma mensagem informando as disciplinas não cursadas.
                     break;
@@ -72,7 +76,7 @@ public class AppControle {
                 case 6: //Consultar Aluno por Matrícula: Dada a matrícula do aluno imprime todos os dados do mesmo, inclusive as disciplinas já cursadas (código e nome de cada disciplina cursada).
                     System.out.println("Informe a matricula do aluno");
                     matricula = entrada.nextInt();
-                    System.out.println(arvoreAlunos.pesquisar(new Aluno(matricula, null), comparadorAM));
+                    System.out.println(arvoreAlunos.pesquisar(new Aluno(matricula, null)));
                     break;
                 case 7: //Excluir Aluno por Matrícula: Dada a matrícula, exclui o aluno.
                     System.out.println("Informe a matricula do aluno que deseja excluir");
