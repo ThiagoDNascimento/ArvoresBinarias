@@ -9,11 +9,11 @@ public class Disciplina {
     int cargaHoraria;
     ArrayList<Disciplina> pre = new ArrayList<Disciplina>();
 
-    public Disciplina(int codigo, String nome, int cargaHoraria, ArrayList<Disciplina> pre){
+    public Disciplina(int codigo, String nome, int cargaHoraria, Disciplina pre){
         this.codigo = codigo;
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
-        this.pre.addAll(pre);
+        this.pre.add(pre);
     }
 
     public int getCodigo() {
@@ -44,8 +44,8 @@ public class Disciplina {
         return pre;
     }
 
-    public void setPre(ArrayList<Disciplina> pre) {
-        this.pre = pre;
+    public void setPre(Disciplina pre) {
+        this.pre.add(pre);
     }
 
     @Override

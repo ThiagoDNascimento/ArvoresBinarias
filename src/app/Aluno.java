@@ -20,13 +20,6 @@ public class Aluno  {
         this.nome = nome;      
     }
 
-    public Aluno(int matricula, String nome, ArrayList<Disciplina> list){
-        this.matricula = matricula;
-        this.nome = nome;
-        this.disciplinas.addAll(list);        
-    }
-
-
     public int getMatricula() {
         return matricula;
     }
@@ -46,6 +39,14 @@ public class Aluno  {
     @Override
     public String toString(){
         return "\nAluno: "+ nome + " - Matricula: "+matricula;
+    }
+
+    public ArrayList<Disciplina> getPre() {
+        return this.disciplinas;
+    }
+
+    public void setPre(Disciplina pre) {
+        this.disciplinas.add(pre);
     }
 
 }

@@ -87,29 +87,33 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
 
     @Override
     public T remover(T valor) {
-        return removerRec(this.raiz, valor, comparador);
+        return (T) removerRec(this.raiz, valor, comparador);
     }
-    private T removerRec(No<T> r, T valor, Comparator comparator){
-        No<T> atual = this.raiz;
-        No<T> noPaiAtual = null;
+    private No<T> removerRec(No<T> r, T valor, Comparator comparator){
         if(r == null){
             return null;
         }
-        else if(r.getValor().equals(valor)){ //Se o valor foi igual então achou o nó a ser removido
-            if(r.getFilhoDireita() == null && r.getFilhoEsquerda() == null){ //se for nó folha, remove
-                r = null; 
-            }
-            else if(r.getFilhoDireita() != null && r.getFilhoEsquerda() != null){ //se tiver nó a esquerda e a direita, pega o menos dos maiores e coloca no lugar
-                
 
+        if(comparador.compare(valor, r.getValor()) < 0){ //Se o valor a ser removido for menor que o valor da raiz, então está na subarvore esquerda
+            r.setFilhoEsquerda(removerRec(r.getFilhoEsquerda(), valor, comparator));
+        }
+        else if(comparador.compare(valor, r.getValor()) > 0){//Se o valor a ser removido for maior que o valor da raiz, então está na subarvore direita
+            r.setFilhoDireita(removerRec(r.getFilhoDireita(), valor, comparator));
+        }
+        else{
+            if(r.getFilhoEsquerda() == null){
+                return r.getFilhoDireita();
             }
+            else if(r.getFilhoDireita() == null){
+                return r.getFilhoEsquerda();
+            }
+            r.setValor(menorElemento(r.getFilhoDireita()));
 
+            r.setFilhoDireita(removerRec(r.getFilhoDireita(), valor, comparator));
         }
-        else if(comparador.compare(valor, r.getValor()) < 0){
-            removerRec(r.getFilhoEsquerda(), valor, comparator);
-        }
-        //else if(comparador.compare(valor, this.raiz.getValor()) < 0){ //se for menor vai pra esquerda
-        return null;
+
+        return r;
+        
     }
 
     private T menorElemento(No<T> raiz) {
@@ -148,6 +152,7 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     @Override
     public String caminharEmNivel() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.    
+
     }
     
     @Override
